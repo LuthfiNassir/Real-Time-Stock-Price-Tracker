@@ -1,16 +1,16 @@
 import pandas as pd  
-import datetime  # Importing datetime for handling date and time (not used in this script)
-import requests  # Importing requests to make HTTP requests
-from requests.exceptions import ConnectionError  # Importing ConnectionError to handle request exceptions
-from bs4 import BeautifulSoup  # Importing BeautifulSoup to parse HTML content
+import datetime  
+import requests  
+from requests.exceptions import ConnectionError  
+from bs4 import BeautifulSoup  
 
 # Function to extract specific text data from the HTML content
 def webContent_div(webContent, classPath):
     webContent_div = webContent.find_all('div', {'class': classPath})  # Find all div elements with the specified class
     try:
-        spans = webContent_div[0].find_all('span')  # Find all span elements within the first div
+        spans = webContent_div[0].find_all('span')  
         texts = [span.get_text() for span in spans]  # Extract the text from each span element
-    except IndexError:  # Handle case where no div or span is found
+    except IndexError:  
         texts = []
     return texts
 
